@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+scm_normal_student_access,scm_normal_student_access,model_scm_student,scm_normal_group,1,1,1,1
+scm_normal_track_access,scm_normal_track_access,model_scm_track,scm_normal_group,1,0,0,0
+scm_normal_course_line_access,scm_normal_course_line_access,model_scm_student_course_line,scm_normal_group,1,0,0,0
+scm_normal_scm_skill_access,scm_normal_scm_skill_access,model_scm_skill,scm_normal_group,1,0,0,0
+
+scm_manager_track_access,scm_manager_track_access,model_scm_track,scm_normal_group,1,1,1,1

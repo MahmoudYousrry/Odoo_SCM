@@ -1,0 +1,82 @@
+<odoo>
+    <record id="students_tree_view" model="ir.ui.view">
+        <field name="name">student.view.tree</field>
+        <field name="model">scm.student</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="birth_date"/>
+                <field name="salary"/>
+                <field name="net_salary"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="students_form_view" model="ir.ui.view">
+        <field name="name">Student Tree View</field>
+        <field name="model">scm.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Set first interview" type="object" name="change_state" invisible="state != 'applied'"/>
+                    <button string="Set second interview" type="object" name="change_state" invisible="state != 'first'"/>
+                    <button string="Passed" type="object" name="set_passed" invisible="state != 'second'"/>
+                    <button string="Rejected" type="object" name="set_rejected" invisible="state != 'second'"/>
+                    <button string="Back to applied" type="object" name="change_state" invisible="state != 'passed' and state != 'rejected'"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Basic Info"> 
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="gender"/>
+                            <field name="salary"/>
+                            <field name="tax"/>
+                            <field name="net_salary"/>
+                            <field name="state"/>
+                            <field name="birth_date" invisible="gender == 'f'"/>
+                            <field name="skills_ids" widget="many2many_tags"/>
+                        </group>
+                        <group string="Scm Info">
+                            <field name="accepted"/>
+                            <field name="level"/>
+                            <field name="image" widget="image"/>
+                            <field name="track_id" domain="[('id', 'in', track_domain_ids)]" groups="scm.scm_manager_group"/>
+                            <field name="track_capacity"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Cv">
+                            <field name="cv"/>
+                        </page>
+                        <page string="Address">
+                            <field name="address"/>
+                        </page>
+                        <page string="grades">
+                            <field name="grade_ids">
+                                <list>
+                                    <field name="course_id"/>
+                                    <field name="grade"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+
+    <record id="student_action" model="ir.actions.act_window">
+        <field name="name">Student</field>
+        <field name="res_model">scm.student</field>
+    </record>
+
+    <menuitem id="scm_root" name="SCM"/>
+    <menuitem id="scm_student_menu" name="Students" 
+                parent="scm_root" action="student_action"/>
+    
+</odoo>

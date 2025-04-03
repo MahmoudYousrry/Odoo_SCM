@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="track_view_form" model="ir.ui.view">
+        <field name="name">Track View Form</field>
+        <field name="model">scm.track</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="capacity"/>
+                        <field name="is_open"/>
+                        <field name="student_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+
+    <record id="scm_track_action" model="ir.actions.act_window">
+        <field name="name">Tracks</field>
+        <field name="res_model">scm.track</field>
+    </record>
+
+    <menuitem
+        id="model_track_menu"
+        name="Tracks"
+        parent="scm_root"
+        action="scm_track_action"
+        groups="scm.scm_manager_group"/>
+
+</odoo>
